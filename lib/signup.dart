@@ -1,28 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online/signup.dart';
-
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(left: 30.0.w,top: 40.h),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          padding:  EdgeInsets.only(left: 30.0.w,top: 20.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Welcome\nBack!',
+                'Username or Email',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 36,
@@ -34,6 +31,26 @@ class _LoginState extends State<Login> {
                 height: 40.h,
               ),
               Container(
+                  width: 317.w,
+                  height: 55.h,
+                  decoration: ShapeDecoration(
+                      color: Color(0xFFF3F3F3),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Color(0xFFA8A8A9)),
+                        borderRadius: BorderRadius.circular(10),
+                      )),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Username',suffixStyle: TextStyle( color: Color(0xFF676767),
+                      fontSize: 12,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w500,
+                      height: 0,
+                    ),),
+                  )),
+              SizedBox(height: 30.h,),
+              Container(
                 width: 317.w,
                 height: 55.h,
                 decoration: ShapeDecoration(
@@ -43,26 +60,6 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(10),
                     )),
                 child: TextField(
-                    decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Username',suffixStyle: TextStyle( color: Color(0xFF676767),
-                      fontSize: 12,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                      height: 0,
-                    ),),
-                )),
-              SizedBox(height: 30.h,),
-              Container(
-                width: 317.w,
-                height: 55.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFFF3F3F3),
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Color(0xFFA8A8A9)),
-                    borderRadius: BorderRadius.circular(10),
-                  )),
-                child: TextField(
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Password',
@@ -70,19 +67,59 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 10.h,),
-              Padding(
-                padding:  EdgeInsets.only(left: 220..w),
-                child: Text(
-                  'Forgot Password?',
-
-                  style: TextStyle(
-                    color: Color(0xFFF73658),
-                    fontSize: 12,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w400,
-
+              SizedBox(height: 30.h,),
+              Container(
+                width: 317.w,
+                height: 55.h,
+                decoration: ShapeDecoration(
+                    color: Color(0xFFF3F3F3),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 1, color: Color(0xFFA8A8A9)),
+                      borderRadius: BorderRadius.circular(10),
+                    )),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Confirm Password',
+                      suffixIcon: Icon(Icons.visibility,color: Colors.green,)
                   ),
+                ),
+              ),
+              SizedBox(height: 40.h,),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'By clicking the ',
+                      style: TextStyle(
+                        color: Color(0xFF676767),
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'Register',
+                      style: TextStyle(
+                        color: Color(0xFFFF4B26),
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w400,
+                        height: 0,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' button, you agree \nto the public offer',
+                      style: TextStyle(
+                        color: Color(0xFF676767),
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w400,
+
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 50.h,),
@@ -94,7 +131,7 @@ class _LoginState extends State<Login> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                 ),
                 child: Center(
-                  child: Text('Login', style: TextStyle(
+                  child: Text('Create Account', style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontFamily: 'Montserrat',
@@ -163,7 +200,7 @@ class _LoginState extends State<Login> {
                 children: [
                   Padding(
                     padding:  EdgeInsets.only(left: 60.0),
-                    child: Text('Create An Account', style: TextStyle(
+                    child: Text('I Already have an account', style: TextStyle(
                       color: Color(0xFF575757),
                       fontSize: 14,
                       fontFamily: 'Montserrat',
@@ -171,22 +208,19 @@ class _LoginState extends State<Login> {
                     ),),
                   ),
                   SizedBox(width: 5.w,),
-                  GestureDetector( onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Signup()));
-                  },
-                    child: Text('Sign up', style: TextStyle(
-                      color: Color(0xFFF73658),
-                      fontSize: 14,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline,
-                      height: 0,
-                    ),),
-                  )
+                  Text('Log in', style: TextStyle(
+                    color: Color(0xFFF73658),
+                    fontSize: 14,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.underline,
+                    height: 0,
+                  ),)
                 ],
               )
 
             ],
+
           ),
         ),
       ),
