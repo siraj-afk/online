@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online/signup.dart';
 
+import 'forget.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -73,15 +75,20 @@ class _LoginState extends State<Login> {
               SizedBox(height: 10.h,),
               Padding(
                 padding:  EdgeInsets.only(left: 220..w),
-                child: Text(
-                  'Forgot Password?',
+                child: GestureDetector( onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Forget()));
 
-                  style: TextStyle(
-                    color: Color(0xFFF73658),
-                    fontSize: 12,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w400,
+                },
+                  child: Text(
+                    'Forgot Password?',
 
+                    style: TextStyle(
+                      color: Color(0xFFF73658),
+                      fontSize: 12,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w400,
+
+                    ),
                   ),
                 ),
               ),
