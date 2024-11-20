@@ -33,8 +33,8 @@ class _IntroState extends State<Intro> {
           fontWeight: FontWeight.w600,
           height: 0,
         ),),
-      back: const Icon(Icons.arrow_back),
-      skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
+      back:  Icon(Icons.arrow_back),
+      skip:  Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
       next: Text('Next',
         textAlign: TextAlign.center,
         style: TextStyle(
