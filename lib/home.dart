@@ -1,5 +1,8 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -11,175 +14,464 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding:  EdgeInsets.only(left: 20.0.w,top: 10.h),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.menu),
-                  Padding(
-                    padding:  EdgeInsets.only(left: 100.0.w),
-                    child: Image.asset('assets/splash.png',width: 38.w,height: 31.h,),
-                  ),
-                  SizedBox(width: 10.w,),
-                  Text('Stylish', style: TextStyle(
-                    color: Color(0xFFF73658),
-                    fontSize: 18,
-                    fontFamily: 'Libre Caslon Text',
-                    fontWeight: FontWeight.w700,
-                    height: 0.01,
-                  ),),
-                  SizedBox(width: 90.w,),
-                  Icon(Icons.map)
-                ],
-              ),
-              SizedBox(height: 20.h,
-              ),
-              Container(
-                width: 343,
-                height: 40,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                  shadows: [
-                    BoxShadow(
-                      color: Color(0x0A000000),
-                      blurRadius: 9,
-                      offset: Offset(0, 2),
-                      spreadRadius: 0,
-                    )
+          padding: EdgeInsets.only(left: 20.0.w, top: 10.h),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.menu),
+                    Padding(
+                      padding: EdgeInsets.only(left: 100.0.w),
+                      child: Image.asset(
+                        'assets/splash.png',
+                        width: 38.w,
+                        height: 31.h,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Text(
+                      'Stylish',
+                      style: TextStyle(
+                        color: Color(0xFFF73658),
+                        fontSize: 18,
+                        fontFamily: 'Libre Caslon Text',
+                        fontWeight: FontWeight.w700,
+                        height: 0.01,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 90.w,
+                    ),
+                    Icon(Icons.map)
                   ],
                 ),
-
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(borderSide: BorderSide.none),
-                    suffixIcon: Icon(Icons.mic,),
-                    prefixIcon: Icon(Icons.search),
-                   hintText: 'Search for product',suffixStyle:   TextStyle(
-                      color: Color(0xFFBBBBBB),
-                  fontSize: 14,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w400,
-                  height: 0.10,
+                SizedBox(
+                  height: 20.h,
                 ),
+                Container(
+                  width: 343,
+                  height: 40,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x0A000000),
+                        blurRadius: 9,
+                        offset: Offset(0, 2),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide.none),
+                      suffixIcon: Icon(
+                        Icons.mic,
+                      ),
+                      prefixIcon: Icon(Icons.search),
+                      hintText: 'Search for product',
+                      suffixStyle: TextStyle(
+                        color: Color(0xFFBBBBBB),
+                        fontSize: 14,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w400,
+                        height: 0.10,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 20.h,),
-              Row(
-                children: [
-                  Text('All Featured', style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                    height: 0.07,
-                  ),),
-                  SizedBox(width: 100.w,),
-                  Container(
-                    width: 61,
-                    height: 24,
-
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                      shadows: [
-                        BoxShadow(
-                          color: Color(0x14000000),
-                          blurRadius: 16,
-                          offset: Offset(1, 1),
-                          spreadRadius: 0,
-                        )
-                      ],
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'All Featured',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600,
+                        height: 0.07,
+                      ),
                     ),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 3.w),
-                        Text('Sort',          style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          height: 0.11,
-                        )),
-                        SizedBox(width: 3.w),
-                        Icon(Icons.compare_arrows)
-                      ],
+                    SizedBox(
+                      width: 100.w,
+                    ),
+                    Container(
+                      width: 61,
+                      height: 24,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                        shadows: [
+                          BoxShadow(
+                            color: Color(0x14000000),
+                            blurRadius: 16,
+                            offset: Offset(1, 1),
+                            spreadRadius: 0,
+                          )
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 3.w),
+                          Text('Sort',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400,
+                                height: 0.11,
+                              )),
+                          SizedBox(width: 3.w),
+                          Icon(Icons.compare_arrows)
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Container(
+                      width: 61,
+                      height: 24,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                        shadows: [
+                          BoxShadow(
+                            color: Color(0x14000000),
+                            blurRadius: 16,
+                            offset: Offset(1, 1),
+                            spreadRadius: 0,
+                          )
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 3.w),
+                          Text('Filter',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400,
+                                height: 0.11,
+                              )),
+                          SizedBox(width: 1.w),
+                          Icon(Icons.compare_arrows)
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 77.h,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  SizedBox(width: 20.w,),
-                  Container(
-                    width: 61,
-                    height: 24,
-
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                      shadows: [
-                        BoxShadow(
-                          color: Color(0x14000000),
-                          blurRadius: 16,
-                          offset: Offset(1, 1),
-                          spreadRadius: 0,
-                        )
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(width: 3.w),
-                        Text('Filter',          style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          height: 0.11,
-                        )),
-                        SizedBox(width: 1.w),
-                        Icon(Icons.compare_arrows)
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.h,),
-              Container(
-                width:double.infinity,
-                height: 87.h,
-                decoration: ShapeDecoration(
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-              ),
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: 76.w,
-                    height: 71.h,
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 56.w,
-                          height: 56.h,
-                          decoration: ShapeDecoration(
-                            shape: OvalBorder(),
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 76.w,
+                          height: 71.h,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 56.w,
+                                height: 56.h,
+                                decoration: ShapeDecoration(
+                                  shape: OvalBorder(),
+                                ),
+                                child: CircleAvatar(
+                                  backgroundImage:
+                                      AssetImage('assets/start.png'),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 9.h,
+                              ),
+                              Text(
+                                'Beauty',
+                                style: TextStyle(
+                                  color: Color(0xFF21003D),
+                                  fontSize: 10,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.16,
+                                ),
+                              )
+                            ],
                           ),
-                          child: Image.asset('assets/apples.png',fit: BoxFit.cover,),
-                        ),
-
-
-                      ],
+                        );
+                      }),
+                ),
+                SizedBox(
+                  height: 5.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 8.0),
+                  child: CarouselSlider(
+                    items: [
+                      Image.asset('assets/ad1.png'),
+                      Image.asset('assets/ad1.png'),
+                      Image.asset('assets/ad1.png'),
+                    ],
+                    options: CarouselOptions(
+                      height: 210,
+                      aspectRatio: 16 / 9,
+                      viewportFraction: 1,
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 3),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      enlargeFactor: 0.8,
+                      scrollDirection: Axis.horizontal,
                     ),
-                  );
-                }),
-
-              )
-            ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Container(
+                  width: 343.w,
+                  height: 60.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFF4392F8),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(right: 15.0),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 20.0),
+                              child: Text(
+                                'Deal of the Day',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.08,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Icon(
+                                  Icons.timelapse,
+                                  color: Colors.white,
+                                  size: 15,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '22h 55m 20s remaining',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.11,
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 50.0),
+                        child: Container(
+                          width: 89.w,
+                          height: 28.h,
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1, color: Colors.white),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Text(
+                                'View all',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w600,
+                                  height: 0.11,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 3,
+                              ),
+                              Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 18,
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 5.0,
+                  mainAxisSpacing: 10.0,
+                  childAspectRatio: 170 / 240,
+                  shrinkWrap: true,
+                  children: List.generate(2, (index) {
+                    return Container(
+                      width: 170,
+                      height: 241,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              width: 170,
+                              height: 120,
+                              child: Image.asset(
+                                'assets/mask.png',
+                                fit: BoxFit.fill,
+                              )),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            'Women Printed Kurta',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                              height: 0.11,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          Text(
+                              'Neque porro quisquam est qui \ndolorem ipsum quia',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w400,
+                              )),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text('₹1500',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                              )),
+                          SizedBox(height: 10.h,),
+                          Row(
+                            children: [
+                              Text(
+                                '₹2499',
+                                style: TextStyle(
+                                  color: Color(0xFFBBBBBB),
+                                  fontSize: 12,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w300,
+                                  height: 0.11,
+                                ),),
+                              SizedBox(width: 15.w,),
+                              Text(
+                                '40%Off',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xFFFE735C),
+                                  fontSize: 10,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.16,
+                                ),)
+                            ],
+                          ),
+                          SizedBox(height: 10.h,),
+                          Row(
+                            children: [
+                              Icon(Icons.star,color: Colors.yellow,size: 15,),
+                              SizedBox(width: 2.w,),
+                              Icon(Icons.star,color: Colors.yellow,size: 15,),
+                              SizedBox(width: 2.w,),
+                              Icon(Icons.star,color: Colors.yellow,size: 15,),
+                              SizedBox(width: 2.w,),
+                              Icon(Icons.star,color: Colors.yellow,size: 15,),
+                              SizedBox(width: 2.w,),
+                              Icon(Icons.star,color: Colors.yellow,size: 15,),
+                              SizedBox(width: 5.w,),
+                              Text( '56890',
+                                style: TextStyle(
+                                  color: Color(0xFFA4A9B3),
+                                  fontSize: 10,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w400,
+                                  height: 0.16,
+                                ),)
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+                )
+              ],
+            ),
           ),
         ),
       ),
