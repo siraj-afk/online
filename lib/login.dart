@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online/signup.dart';
+import 'package:online/start.dart';
 
 import 'forget.dart';
 
@@ -93,20 +94,24 @@ class _LoginState extends State<Login> {
                 ),
               ),
               SizedBox(height: 50.h,),
-              Container(
-                width: 317.w,
-                height: 55.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFFF73658),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                ),
-                child: Center(
-                  child: Text('Login', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                  ),),
+              GestureDetector( onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Start()));
+              },
+                child: Container(
+                  width: 317.w,
+                  height: 55.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFF73658),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                  ),
+                  child: Center(
+                    child: Text('Login', style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.w600,
+                    ),),
+                  ),
                 ),
               ),
               SizedBox(height: 60.h,),
