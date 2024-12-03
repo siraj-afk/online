@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online/bottomnavi.dart';
 
 import 'home.dart';
 class Start extends StatefulWidget {
@@ -57,7 +58,7 @@ class _StartState extends State<Start> {
                     ),),
                   SizedBox(height: 40.h,),
                   GestureDetector( onTap: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Home()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Bottomnavi()));
                   },
                     child: Container(
                       width: 279.w,

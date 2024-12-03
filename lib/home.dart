@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online/profile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -49,7 +50,28 @@ class _HomeState extends State<Home> {
                     SizedBox(
                       width: 90.w,
                     ),
-                    Icon(Icons.map)
+                    Column(
+                      children: [
+                        GestureDetector(onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Profile()));
+                        },
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: ShapeDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    "assets/pro.png"),
+                                fit: BoxFit.fill,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 SizedBox(
@@ -417,7 +439,9 @@ class _HomeState extends State<Home> {
                                 fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.w500,
                               )),
-                          SizedBox(height: 10.h,),
+                          SizedBox(
+                            height: 10.h,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -428,8 +452,11 @@ class _HomeState extends State<Home> {
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w300,
                                   height: 0.11,
-                                ),),
-                              SizedBox(width: 15.w,),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 15.w,
+                              ),
                               Text(
                                 '40%Off',
                                 textAlign: TextAlign.center,
@@ -439,30 +466,65 @@ class _HomeState extends State<Home> {
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,
                                   height: 0.16,
-                                ),)
+                                ),
+                              )
                             ],
                           ),
-                          SizedBox(height: 10.h,),
+                          SizedBox(
+                            height: 10.h,
+                          ),
                           Row(
                             children: [
-                              Icon(Icons.star,color: Colors.yellow,size: 15,),
-                              SizedBox(width: 2.w,),
-                              Icon(Icons.star,color: Colors.yellow,size: 15,),
-                              SizedBox(width: 2.w,),
-                              Icon(Icons.star,color: Colors.yellow,size: 15,),
-                              SizedBox(width: 2.w,),
-                              Icon(Icons.star,color: Colors.yellow,size: 15,),
-                              SizedBox(width: 2.w,),
-                              Icon(Icons.star,color: Colors.yellow,size: 15,),
-                              SizedBox(width: 5.w,),
-                              Text( '56890',
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: 2.w,
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 15,
+                              ),
+                              SizedBox(
+                                width: 5.w,
+                              ),
+                              Text(
+                                '56890',
                                 style: TextStyle(
                                   color: Color(0xFFA4A9B3),
                                   fontSize: 10,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,
                                   height: 0.16,
-                                ),)
+                                ),
+                              )
                             ],
                           )
                         ],
