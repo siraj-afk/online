@@ -733,7 +733,7 @@ class _SearchState extends State<Search> {
                   children: List.generate(2, (index) {
                     return Card(
                       child: Container(
-                        width: 170,
+                        width: 170  ,
                         height: 241,
                         decoration: ShapeDecoration(
                           color: Colors.white,
