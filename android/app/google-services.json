@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500716010656",
+    "project_id": "online-4f239",
+    "storage_bucket": "online-4f239.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500716010656:android:d512dd6e4a8020526f5dc5",
+        "android_client_info": {
+          "package_name": "com.example.online"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApuq6Fms7EejhK_H8ld9so2go5EuQGv6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

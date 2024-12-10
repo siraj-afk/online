@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online/profile.dart';
 
+import 'Screen1.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -213,36 +215,41 @@ class _HomeState extends State<Home> {
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          width: 76.w,
-                          height: 71.h,
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 56.w,
-                                height: 56.h,
-                                decoration: ShapeDecoration(
-                                  shape: OvalBorder(),
+                        return GestureDetector( onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Screen1()));
+                        },
+
+                          child: Container(
+                            width: 76.w,
+                            height: 71.h,
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: 56.w,
+                                  height: 56.h,
+                                  decoration: ShapeDecoration(
+                                    shape: OvalBorder(),
+                                  ),
+                                  child: CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/start.png'),
+                                  ),
                                 ),
-                                child: CircleAvatar(
-                                  backgroundImage:
-                                      AssetImage('assets/start.png'),
+                                SizedBox(
+                                  height: 9.h,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 9.h,
-                              ),
-                              Text(
-                                'Beauty',
-                                style: TextStyle(
-                                  color: Color(0xFF21003D),
-                                  fontSize: 10,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w400,
-                                  height: 0.16,
-                                ),
-                              )
-                            ],
+                                Text(
+                                  'Beauty',
+                                  style: TextStyle(
+                                    color: Color(0xFF21003D),
+                                    fontSize: 10,
+                                    fontFamily: 'Montserrat',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0.16,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         );
                       }),

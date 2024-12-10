@@ -13,8 +13,7 @@ class _ForgetState extends State<Forget> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding:  EdgeInsets.only(left: 30.0,top: 30),
+        child: Padding( padding:  EdgeInsets.only(left: 30.0,top: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

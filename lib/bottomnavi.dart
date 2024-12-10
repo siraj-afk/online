@@ -77,6 +77,8 @@ class _BottomnaviState extends State<Bottomnavi> {
             ), label: "home"),
           ],
         ),body: screens[currentIndex],
+
+
         );
 
   }
