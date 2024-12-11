@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:online/toastmsg.dart';
 
 import 'home.dart';
@@ -176,17 +178,22 @@ class _SignupState extends State<Signup> {
                   padding:  EdgeInsets.only(left: 50.0),
                   child: Row(
                     children: [
-                      Container(
-                        width: 54.w,
-                        height: 54.h,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFFBF3F5),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1, color: Color(0xFFF73658)),
-                            borderRadius: BorderRadius.circular(50),
+                      GestureDetector(
+                        onTap: (){
+                          signup(context);
+                        },
+                        child: Container(
+                          width: 54.w,
+                          height: 54.h,
+                          decoration: ShapeDecoration(
+                            color: Color(0xFFFBF3F5),
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(width: 1, color: Color(0xFFF73658)),
+                              borderRadius: BorderRadius.circular(50),
+                            ),
                           ),
+                          child: Center(child: Image.asset('assets/google.png',width: 24.w,height: 24.h,)),
                         ),
-                        child: Center(child: Image.asset('assets/google.png',width: 24.w,height: 24.h,)),
                       ),
                       SizedBox(width: 20.w,),
                       Container(
@@ -250,5 +257,27 @@ class _SignupState extends State<Signup> {
     );
 
   }
+  Future<void> signup(BuildContext context) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleSignInAccount = await googleSignIn
+        .signIn();
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
 
+      // Getting users credential
+      UserCredential result = await firebaseAuth.signInWithCredential(
+          authCredential);
+      User? user = result.user;
+
+      if (result != null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Home()));
+      } // if result not null we simply call the MaterialpageRoute,
+      // for go to the HomePage screen
+    }
+  }
 }

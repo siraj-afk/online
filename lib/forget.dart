@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online/toastmsg.dart';
+
 class Forget extends StatefulWidget {
   const Forget({super.key});
 
@@ -8,12 +12,16 @@ class Forget extends StatefulWidget {
 }
 
 class _ForgetState extends State<Forget> {
+  TextEditingController email = TextEditingController();
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding( padding:  EdgeInsets.only(left: 30.0,top: 30),
+        child: Padding(
+          padding: EdgeInsets.only(left: 30.0, top: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -25,7 +33,10 @@ class _ForgetState extends State<Forget> {
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w700,
                 ),
-              ),SizedBox(height: 40.h,),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
               Container(
                   width: 317.w,
                   height: 55.h,
@@ -35,39 +46,67 @@ class _ForgetState extends State<Forget> {
                         side: BorderSide(width: 1, color: Color(0xFFA8A8A9)),
                         borderRadius: BorderRadius.circular(10),
                       )),
-                  child: TextField(
+                  child: TextField(controller: email,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Username',suffixStyle: TextStyle( color: Color(0xFF676767),
-                      fontSize: 12,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w500,
-                      height: 0,
-                    ),),
+                      hintText: 'Username',
+                      suffixStyle: TextStyle(
+                        color: Color(0xFF676767),
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w500,
+                        height: 0,
+                      ),
+                    ),
                   )),
-              SizedBox(height: 40.h,),
-              Text(' We Will Send You A Message To Set Or Reset\nYourNewPassword', style: TextStyle(
-                color: Color(0xFFFF4B26),
-                fontSize: 12,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.w400,
-
-              ),),
-              SizedBox(height: 40.h,),
-              Container(
-                width: 317.w,
-                height: 55.h,
-                decoration: ShapeDecoration(
-                  color: Color(0xFFF73658),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+              SizedBox(
+                height: 40.h,
+              ),
+              Text(
+                ' We Will Send You A Message To Set Or Reset\nYourNewPassword',
+                style: TextStyle(
+                  color: Color(0xFFFF4B26),
+                  fontSize: 12,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.w400,
                 ),
-                child: Center(
-                  child: Text('Submit', style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Montserrat',
-                    fontWeight: FontWeight.w600,
-                  ),),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              GestureDetector(
+                onTap: () {
+                  firebaseAuth
+                      .sendPasswordResetEmail(
+                        email: email.text,
+                      )
+                      .then((value) => {
+                            ToastMessage().toastmessage(
+                                message: 'Successfully registerd'),
+                            Navigator.of(context).pop()
+                          })
+                      .onError((error, stackTrace) => ToastMessage()
+                          .toastmessage(message: error.toString()));
+                },
+                child: Container(
+                  width: 317.w,
+                  height: 55.h,
+                  decoration: ShapeDecoration(
+                    color: Color(0xFFF73658),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],

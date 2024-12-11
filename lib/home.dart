@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online/profile.dart';
@@ -14,6 +15,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final editpost = TextEditingController();
+  final firestore = FirebaseFirestore.instance.collection('banner').snapshots();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,16 +58,17 @@ class _HomeState extends State<Home> {
                     ),
                     Column(
                       children: [
-                        GestureDetector(onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Profile()));
-                        },
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => Profile()));
+                          },
                           child: Container(
                             width: 40,
                             height: 40,
                             decoration: ShapeDecoration(
                               image: DecorationImage(
-                                image: AssetImage(
-                                    "assets/pro.png"),
+                                image: AssetImage("assets/pro.png"),
                                 fit: BoxFit.fill,
                               ),
                               shape: RoundedRectangleBorder(
@@ -215,10 +220,11 @@ class _HomeState extends State<Home> {
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector( onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Screen1()));
-                        },
-
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => Screen1()));
+                          },
                           child: Container(
                             width: 76.w,
                             height: 71.h,
@@ -259,28 +265,51 @@ class _HomeState extends State<Home> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(right: 8.0),
-                  child: CarouselSlider(
-                    items: [
-                      Image.asset('assets/ad1.png'),
-                      Image.asset('assets/ad1.png'),
-                      Image.asset('assets/ad1.png'),
-                    ],
-                    options: CarouselOptions(
-                      height: 210,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 1,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: true,
-                      autoPlayInterval: Duration(seconds: 3),
-                      autoPlayAnimationDuration: Duration(milliseconds: 800),
-                      autoPlayCurve: Curves.fastOutSlowIn,
-                      enlargeCenterPage: true,
-                      enlargeFactor: 0.8,
-                      scrollDirection: Axis.horizontal,
-                    ),
-                  ),
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: firestore,
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text('error'),
+                          );
+                        }
+                        if (snapshot.hasData) {
+                          return CarouselSlider.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (BuildContext context, int index, int realIndex) {
+                              return Container(
+                                width: 343.w,
+                                height: 189.h,
+                                child: Image.network(snapshot.data!.docs[index]['image'].toString()),
+                              ) ; },
+                            options: CarouselOptions(
+                              height: 210,
+                              aspectRatio: 16 / 9,
+                              viewportFraction: 1,
+                              initialPage: 0,
+                              enableInfiniteScroll: true,
+                              reverse: false,
+                              autoPlay: true,
+                              autoPlayInterval: Duration(seconds: 3),
+                              autoPlayAnimationDuration:
+                                  Duration(milliseconds: 800),
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              enlargeCenterPage: true,
+                              enlargeFactor: 0.8,
+                              scrollDirection: Axis.horizontal,
+                            ),
+
+                          );
+                        } else {
+                          return SizedBox();
+                        }
+                      }),
                 ),
                 SizedBox(
                   height: 15.h,
