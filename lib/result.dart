@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online/toastmsg.dart';
 
-
-class Cart extends StatefulWidget {
+class Result extends StatefulWidget {
   final String name;
   final String description;
   final String offer;
@@ -11,13 +13,23 @@ class Cart extends StatefulWidget {
   final String discount;
   final List<dynamic> image;
 
-  const Cart({super.key, required this.name, required this.description, required this.offer, required this.price, required this.discount, required this.image});
+  const Result(
+      {super.key,
+      required this.name,
+      required this.description,
+      required this.offer,
+      required this.price,
+      required this.discount,
+      required this.image});
 
   @override
-  State<Cart> createState() => _SearchState();
+  State<Result> createState() => _SearchState();
 }
 
-class _SearchState extends State<Cart> {
+class _SearchState extends State<Result> {
+  final post = TextEditingController();
+  final firestore = FirebaseFirestore.instance.collection('Cart');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +101,8 @@ class _SearchState extends State<Cart> {
                       height: 32.h,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1.50, color: Color(0xFFF97189)),
+                          side:
+                              BorderSide(width: 1.50, color: Color(0xFFF97189)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -114,7 +127,8 @@ class _SearchState extends State<Cart> {
                       height: 32.h,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1.50, color: Color(0xFFF97189)),
+                          side:
+                              BorderSide(width: 1.50, color: Color(0xFFF97189)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -139,7 +153,8 @@ class _SearchState extends State<Cart> {
                       height: 32.h,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1.50, color: Color(0xFFF97189)),
+                          side:
+                              BorderSide(width: 1.50, color: Color(0xFFF97189)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -164,7 +179,8 @@ class _SearchState extends State<Cart> {
                       height: 32.h,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1.50, color: Color(0xFFF97189)),
+                          side:
+                              BorderSide(width: 1.50, color: Color(0xFFF97189)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -189,7 +205,8 @@ class _SearchState extends State<Cart> {
                       height: 32.h,
                       decoration: ShapeDecoration(
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1.50, color: Color(0xFFF97189)),
+                          side:
+                              BorderSide(width: 1.50, color: Color(0xFFF97189)),
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -345,9 +362,9 @@ class _SearchState extends State<Cart> {
                   width: 343.w,
                   child: Text(
                     'Perhaps the most iconic sneaker of all-time, this original "Chicago"? '
-                        'colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan,'
-                        ' the shoe has stood the test of time,'
-                        ' becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the',
+                    'colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan,'
+                    ' the shoe has stood the test of time,'
+                    ' becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 13,
@@ -356,7 +373,9 @@ class _SearchState extends State<Cart> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Row(
                   children: [
                     Container(
@@ -370,19 +389,32 @@ class _SearchState extends State<Cart> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 3.w,),
-                          Icon(Icons.location_pin,color: Color(0xFF828282),size: 15,),
-                          SizedBox(width: 2.w,),
-                          Text('Nearest Store',  style: TextStyle(
+                          SizedBox(
+                            width: 3.w,
+                          ),
+                          Icon(
+                            Icons.location_pin,
                             color: Color(0xFF828282),
-                            fontSize: 10,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w500,
-                          ),)
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          Text(
+                            'Nearest Store',
+                            style: TextStyle(
+                              color: Color(0xFF828282),
+                              fontSize: 10,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    SizedBox(width: 10.w,),
+                    SizedBox(
+                      width: 10.w,
+                    ),
                     Container(
                       width: 46.w,
                       height: 24.h,
@@ -394,19 +426,32 @@ class _SearchState extends State<Cart> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 3.w,),
-                          Icon(Icons.lock,color: Color(0xFF828282),size: 15,),
-                          SizedBox(width: 2.w,),
-                          Text('VIP',  style: TextStyle(
+                          SizedBox(
+                            width: 3.w,
+                          ),
+                          Icon(
+                            Icons.lock,
                             color: Color(0xFF828282),
-                            fontSize: 10,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w500,
-                          ),)
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          Text(
+                            'VIP',
+                            style: TextStyle(
+                              color: Color(0xFF828282),
+                              fontSize: 10,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    SizedBox(width: 10.w,),
+                    SizedBox(
+                      width: 10.w,
+                    ),
                     Container(
                       width: 97.w,
                       height: 24.h,
@@ -418,165 +463,228 @@ class _SearchState extends State<Cart> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 3.w,),
-                          Icon(Icons.keyboard_return,color: Color(0xFF828282),size: 15,),
-                          SizedBox(width: 2.w,),
-                          Text('Return Policy',  style: TextStyle(
+                          SizedBox(
+                            width: 3.w,
+                          ),
+                          Icon(
+                            Icons.keyboard_return,
                             color: Color(0xFF828282),
-                            fontSize: 10,
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.w500,
-                          ),)
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 2.w,
+                          ),
+                          Text(
+                            'Return Policy',
+                            style: TextStyle(
+                              color: Color(0xFF828282),
+                              fontSize: 10,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    SizedBox(width: 10.w,),
-
+                    SizedBox(
+                      width: 10.w,
+                    ),
                   ],
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Row(
                   children: [
-                    Stack(
-                        children:[
-
-                          Container(
-                            width: 136.w,
-                            height: 36.h,
-                            decoration: ShapeDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment(-0.00, -1.00),
-                                end: Alignment(0, 1),
-                                colors: [Color(0xFF3E92FF), Color(0xFF0B3689)],
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(4),
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(4),
-                                ),
+                    Stack(children: [
+                      GestureDetector(
+                        onTap: () {
+                          final id =
+                              DateTime.now().microsecondsSinceEpoch.toString();
+                          firestore
+                              .doc(id)
+                              .set({"id": id,
+                            "name": widget.name.toString(),
+                             "descrption": widget.description.toString(),
+                            "discount": widget.discount.toString(),
+                            "offer": widget.offer.toString(),
+                            "price" : widget.price.toString(),
+                            "image" : widget.image.toString()
+                          })
+                              .then(
+                                (value) => {
+                                  ToastMessage().toastmessage(
+                                      message: 'adding Succesfully'),
+                                  post.clear(),
+                                },
+                              )
+                              .onError(
+                                (error, stackTrace) => ToastMessage()
+                                    .toastmessage(message: error.toString()),
+                              );
+                        },
+                        child: Container(
+                          width: 136.w,
+                          height: 36.h,
+                          decoration: ShapeDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(-0.00, -1.00),
+                              end: Alignment(0, 1),
+                              colors: [Color(0xFF3E92FF), Color(0xFF0B3689)],
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(4),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(4),
                               ),
                             ),
-                            child: Center(
-                              child: Padding(
-                                padding:  EdgeInsets.only(left: 23.0),
-                                child: Text('Go to Cart', style: TextStyle(
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 23.0),
+                              child: Text(
+                                'Go to Cart',
+                                style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w500,
                                   height: 0.08,
-                                ),),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding:  EdgeInsets.only(bottom: 20.0),
-                            child: Container(
-                              width: 40.w,
-                              height: 40.h,
-                              decoration: ShapeDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment(-0.00, -1.00),
-                                  end: Alignment(0, 1),
-                                  colors: [Color(0xFF3E92FF), Color(0xFF0B3689)],
                                 ),
-                                shape: OvalBorder(),
                               ),
-                              child: Center(child: Icon(Icons.shopping_cart,color: Colors.white,)),
                             ),
                           ),
-                        ]
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20.0),
+                        child: Container(
+                          width: 40.w,
+                          height: 40.h,
+                          decoration: ShapeDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(-0.00, -1.00),
+                              end: Alignment(0, 1),
+                              colors: [Color(0xFF3E92FF), Color(0xFF0B3689)],
+                            ),
+                            shape: OvalBorder(),
+                          ),
+                          child: Center(
+                              child: Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                          )),
+                        ),
+                      ),
+                    ]),
+                    SizedBox(
+                      width: 10.w,
                     ),
-                    SizedBox(width: 10.w,),
-                    Stack(
-                        children:[
-
-                          Container(
-                            width: 136.w,
-                            height: 36.h,
-                            decoration: ShapeDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment(-0.00, -1.00),
-                                end: Alignment(0, 1),
-                                colors:  [Color(0xFF70F8A8), Color(0xFF31B669)],
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(4),
-                                  bottomLeft: Radius.circular(20),
-                                  bottomRight: Radius.circular(4),
-                                ),
-                              ),
+                    Stack(children: [
+                      Container(
+                        width: 136.w,
+                        height: 36.h,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(-0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF70F8A8), Color(0xFF31B669)],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(4),
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(4),
                             ),
-                            child: Center(
-                              child: Padding(
-                                padding:  EdgeInsets.only(left: 23.0),
-                                child: Text('Buy Now', style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w500,
-                                  height: 0.08,
-                                ),),
+                          ),
+                        ),
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 23.0),
+                            child: Text(
+                              'Buy Now',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                height: 0.08,
                               ),
                             ),
                           ),
-                          Padding(
-                            padding:  EdgeInsets.only(bottom: 20.0),
-                            child: Container(
-                              width: 40.w,
-                              height: 40.h,
-                              decoration: ShapeDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment(-0.00, -1.00),
-                                  end: Alignment(0, 1),
-                                  colors:  [Color(0xFF70F8A8), Color(0xFF31B669)],
-                                ),
-                                shape: OvalBorder(),
-                              ),
-                              child: Center(child: Icon(Icons.compress,color: Colors.white,)),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20.0),
+                        child: Container(
+                          width: 40.w,
+                          height: 40.h,
+                          decoration: ShapeDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(-0.00, -1.00),
+                              end: Alignment(0, 1),
+                              colors: [Color(0xFF70F8A8), Color(0xFF31B669)],
                             ),
+                            shape: OvalBorder(),
                           ),
-                        ]
-                    ),
+                          child: Center(
+                              child: Icon(
+                            Icons.compress,
+                            color: Colors.white,
+                          )),
+                        ),
+                      ),
+                    ]),
                   ],
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Container(
                   width: 350.w,
                   height: 60.h,
                   decoration: ShapeDecoration(
                     color: Color(0xFFFFCCD4),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(left: 30.0.w,top: 10.h),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: EdgeInsets.only(left: 30.0.w, top: 10.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Delivery in', style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w600,
-
-                        ),),
-                        SizedBox(height: 10.h,),
-                        Text('1 within Hour',  style: TextStyle(
-                          color: Color(0xFF010101),
-                          fontSize: 21,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                          height: 0.04,
-                        ),),
-
+                        Text(
+                          'Delivery in',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Text(
+                          '1 within Hour',
+                          style: TextStyle(
+                            color: Color(0xFF010101),
+                            fontSize: 21,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                            height: 0.04,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 Row(
                   children: [
                     Container(
@@ -585,67 +693,84 @@ class _SearchState extends State<Cart> {
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 0.50, color: Color(0xFFD9D9D9)),
+                          side:
+                              BorderSide(width: 0.50, color: Color(0xFFD9D9D9)),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       child: Padding(
-                        padding:const EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Row(
                           children: [
                             Icon(Icons.remove_red_eye_outlined),
-                            SizedBox(width: 5,),
-                            Text('View Similar', style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w500,
-                              height: 0.08,
-                            ),)
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'View Similar',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                height: 0.08,
+                              ),
+                            )
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(width: 5.w,),
+                    SizedBox(
+                      width: 5.w,
+                    ),
                     Container(
                       width: 172.w,
                       height: 48.h,
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 0.50, color: Color(0xFFD9D9D9)),
+                          side:
+                              BorderSide(width: 0.50, color: Color(0xFFD9D9D9)),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       child: Padding(
-                        padding:const EdgeInsets.symmetric(horizontal: 30),
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
                         child: Row(
                           children: [
                             Icon(Icons.remove_red_eye_outlined),
-                            Text('View Similar', style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.w500,
-                              height: 0.08,
-                            ),)
+                            Text(
+                              'View Similar',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.w500,
+                                height: 0.08,
+                              ),
+                            )
                           ],
                         ),
                       ),
                     ),
-
-
                   ],
                 ),
-                SizedBox(height: 20.h,),
-                Text('Simnilar To',  style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontFamily: 'Montserrat',
-                  fontWeight: FontWeight.w600,
-                  height: 0.06,
-                ),),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  'Simnilar To',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w600,
+                    height: 0.06,
+                  ),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Row(
                   children: [
                     Text(
@@ -730,7 +855,9 @@ class _SearchState extends State<Cart> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 GridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 5.0,
@@ -740,7 +867,7 @@ class _SearchState extends State<Cart> {
                   children: List.generate(2, (index) {
                     return Card(
                       child: Container(
-                        width: 170  ,
+                        width: 170,
                         height: 241,
                         decoration: ShapeDecoration(
                           color: Colors.white,
@@ -885,8 +1012,9 @@ class _SearchState extends State<Cart> {
                     );
                   }),
                 ),
-                SizedBox(height: 40.h,)
-
+                SizedBox(
+                  height: 40.h,
+                )
               ],
             ),
           ),

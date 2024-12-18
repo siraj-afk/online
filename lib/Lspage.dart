@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online/cart.dart';
+import 'package:online/result.dart';
 class Lspage extends StatefulWidget {
 
   final List<dynamic> products;
@@ -32,7 +32,7 @@ class _LspageState extends State<Lspage> {
                     itemCount: widget.products.length,
                     itemBuilder: (BuildContext ctx, index) {
                       return GestureDetector( onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Cart(
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Result(
                             name: widget.products[index]['name'].toString(),
                             description:widget.products[index]['caption'].toString(),
                             offer: widget.products[index]['offer']

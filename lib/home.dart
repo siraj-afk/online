@@ -8,7 +8,7 @@ import 'package:online/Search.dart';
 import 'package:online/profile.dart';
 
 import 'Screen1.dart';
-import 'cart.dart';
+import 'result.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -479,7 +479,7 @@ class _HomeState extends State<Home> {
                                 return GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (_) => Cart(
+                                        builder: (_) => Result(
                                             name: snapshot.data!.docs[index]['name']
                                                 .toString(),
                                             description: snapshot.data!
