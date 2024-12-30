@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online/Cart.dart';
 
 import 'package:online/home.dart';
 import 'package:online/Wishlist.dart';
@@ -13,7 +14,7 @@ class Bottomnavi extends StatefulWidget {
 }
 
 class _BottomnaviState extends State<Bottomnavi> {
-  final screens = [Home(),Whishlist(),Search(),Setting()];
+  final screens = [Home(),Whishlist(),Cart(),Search(),Setting()];
   int currentIndex=0;
   @override
   Widget build(BuildContext context) {
@@ -54,8 +55,21 @@ class _BottomnaviState extends State<Bottomnavi> {
             BottomNavigationBarItem(icon: Column(
               children: [
                 Icon(Icons.search,color: currentIndex==2?Colors.green:Colors.black,),
-                Text('Search', style: TextStyle(
+                Text('Cart', style: TextStyle(
                   color:currentIndex==2?Colors.green:Colors.grey,
+                  fontSize: 10,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  height: 0,
+                ),)
+              ],
+            ), label: "home"),
+
+            BottomNavigationBarItem(icon: Column(
+              children: [
+                Icon(Icons.search,color: currentIndex==3?Colors.green:Colors.black,),
+                Text('Search', style: TextStyle(
+                  color:currentIndex==3?Colors.green:Colors.grey,
                   fontSize: 10,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w400,
@@ -65,9 +79,9 @@ class _BottomnaviState extends State<Bottomnavi> {
             ), label: "home"),
             BottomNavigationBarItem(icon: Column(
               children: [
-                Icon(Icons.settings,color: currentIndex==3?Colors.green:Colors.black,),
+                Icon(Icons.settings,color: currentIndex==4?Colors.green:Colors.black,),
                 Text('Setting', style: TextStyle(
-                  color: currentIndex==3?Colors.green:Colors.grey,
+                  color: currentIndex==4?Colors.green:Colors.grey,
                   fontSize: 10,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w400,

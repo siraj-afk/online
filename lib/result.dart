@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online/Cart.dart';
 import 'package:online/toastmsg.dart';
 
 class Result extends StatefulWidget {
@@ -516,8 +517,11 @@ class _SearchState extends State<Result> {
                                   ToastMessage().toastmessage(
                                       message: 'adding Succesfully'),
                                   post.clear(),
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Cart()))
                                 },
                               )
+
+
                               .onError(
                                 (error, stackTrace) => ToastMessage()
                                     .toastmessage(message: error.toString()),

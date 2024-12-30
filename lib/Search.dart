@@ -18,10 +18,16 @@ class _SearchState extends State<Search> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child:Container(
-          width: 60,
-          height: 60,
-          color: Colors.black,
+        child:Column(
+          children: [
+            Center(
+              child: Container(
+                width: 60,
+                height: 60,
+                color: Colors.black,
+              ),
+            ),
+          ],
         )
       ),
     );
