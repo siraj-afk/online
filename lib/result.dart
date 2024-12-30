@@ -2,9 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online/Cart.dart';
+import 'package:online/Screen1.dart';
 import 'package:online/toastmsg.dart';
+
+import 'Screen2.dart';
 
 class Result extends StatefulWidget {
   final String name;
@@ -587,35 +591,39 @@ class _SearchState extends State<Result> {
                       width: 10.w,
                     ),
                     Stack(children: [
-                      Container(
-                        width: 136.w,
-                        height: 36.h,
-                        decoration: ShapeDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment(-0.00, -1.00),
-                            end: Alignment(0, 1),
-                            colors: [Color(0xFF70F8A8), Color(0xFF31B669)],
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(4),
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(4),
+                      GestureDetector(onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Screen1()));
+                      },
+                        child: Container(
+                          width: 136.w,
+                          height: 36.h,
+                          decoration: ShapeDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment(-0.00, -1.00),
+                              end: Alignment(0, 1),
+                              colors: [Color(0xFF70F8A8), Color(0xFF31B669)],
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(4),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(4),
+                              ),
                             ),
                           ),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 23.0),
-                            child: Text(
-                              'Buy Now',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.w500,
-                                height: 0.08,
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 23.0),
+                              child: Text(
+                                'Buy Now',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: 'Montserrat',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0.08,
+                                ),
                               ),
                             ),
                           ),
