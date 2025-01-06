@@ -514,7 +514,7 @@ class _SearchState extends State<Result> {
                             "discount": widget.discount.toString(),
                             "offer": widget.offer.toString(),
                             "price" : widget.price.toString(),
-                            "image" : widget.image.toString()
+                            "image" : widget.image
                           })
                               .then(
                                 (value) => {
@@ -592,7 +592,14 @@ class _SearchState extends State<Result> {
                     ),
                     Stack(children: [
                       GestureDetector(onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Screen1()));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Screen2(
+                            image: widget.image,
+                            discount: widget.discount.toString(),
+                            name: widget.name.toString(),
+                            price: widget.price.toString(),
+                            offer: widget.offer.toString(),
+                          description: widget.description.toString(),
+                        )));
                       },
                         child: Container(
                           width: 136.w,

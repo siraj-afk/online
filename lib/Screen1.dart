@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online/home.dart';
 
 import 'Screen2.dart';
 class Screen1 extends StatefulWidget {
@@ -145,7 +146,7 @@ class _Screen1State extends State<Screen1> {
               ),),
               SizedBox(height: 20.h,),
               GestureDetector( onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Screen2()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_)=>Home()));
               },
                 child: Container(
                   width: 331.w,

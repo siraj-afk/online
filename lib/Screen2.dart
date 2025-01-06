@@ -1,14 +1,133 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:online/toastmsg.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+import 'Screen1.dart';
 
 class Screen2 extends StatefulWidget {
-  const Screen2({super.key});
+  final String name;
+  final String description;
+  final String offer;
+  final String price;
+  final String discount;
+  final List<dynamic> image;
+  const Screen2({super.key,
+    required this.name,
+    required this.description,
+    required this.offer,
+    required this.price,
+    required this.discount,
+    required this.image});
 
   @override
   State<Screen2> createState() => _Screen2State();
 }
 
 class _Screen2State extends State<Screen2> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  final date = DateTime.now().add(Duration(days: 7));
+  final firestore = FirebaseFirestore.instance.collection('order');
+
+  void handlePaymentErrorResponse(PaymentFailureResponse response) {
+    /*
+    * PaymentFailureResponse contains three values:
+    * 1. Error Code
+    * 2. Error Description
+    * 3. Metadata
+    * */
+  }
+
+  void handlePaymentSuccessResponse(PaymentSuccessResponse response) async {
+    final id =
+    DateTime.now().microsecondsSinceEpoch.toString();
+    firestore
+        .doc(id)
+
+        .set({
+
+      "stutus":"Order Placed",
+      'date':
+      '${date.day.toString()} ${DateFormat('MMM').format(date)} ${date.year.toString()}',
+      "name": widget.name.toString(),
+      "image": widget.image,
+
+
+      "price": widget.price.toString(),
+      "offer": widget.offer.toString(),
+      "discount": widget.discount.toString()
+    }).then(
+          (value) {
+
+      },
+    ).onError(
+          (error, stackTrace) {
+        ToastMessage().toastmessage(message: error.toString());
+      },
+    );
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        Future.delayed(Duration(seconds: 3), () {
+          Navigator.of(context).pop();
+        });
+
+        return AlertDialog(
+            title: CircleAvatar(
+              backgroundColor: Color(0xFFF73658),
+              radius: 40.r,
+              child: Center(
+                child: Icon(
+                  Icons.done,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            content: Text(
+              'Payment done successfully.',
+              style: GoogleFonts.montserrat(
+                color: Color(0xFF222222),
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                height: 0.14,
+              ),
+            ));
+      },
+    ).then(
+          (value) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => Screen1()));
+      },
+    );
+  }
+
+  void handleExternalWalletSelected(ExternalWalletResponse response) {
+    showAlertDialog(
+        context, "External Wallet Selected", "${response.walletName}");
+  }
+
+  void showAlertDialog(BuildContext context, String title, String message) {
+    // set up the buttons
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(message),
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +160,7 @@ class _Screen2State extends State<Screen2> {
               ),
               Container(
                 width: 426.w,
-                height: 153.h,
+                height: 163.h,
                 color: Colors.white,
                 child: Row(
                   children: [
@@ -52,8 +171,8 @@ class _Screen2State extends State<Screen2> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
                       ),
-                      child: Image.asset(
-                        'assets/mask.png',
+                      child: Image.network(
+                        widget.image[0],
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -64,7 +183,7 @@ class _Screen2State extends State<Screen2> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Womens Casual Wear',
+                          widget.name,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14,
@@ -75,8 +194,11 @@ class _Screen2State extends State<Screen2> {
                         SizedBox(
                           height: 10.h,
                         ),
-                        Text(
-                          'Checked Single-Breasted\nBlazer',
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            widget.description,
+                          ),
                         ),
                         SizedBox(
                           height: 10.h,
@@ -248,7 +370,7 @@ class _Screen2State extends State<Screen2> {
                     ),
                   ),
                   Text(
-                    '\$ 7,000.00',
+                    widget.price,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -365,7 +487,7 @@ class _Screen2State extends State<Screen2> {
                     ),
                   ),
                   Text(
-                    '\$ 7,000.00',
+                    widget.price,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -414,7 +536,7 @@ class _Screen2State extends State<Screen2> {
                 children: [
                   Column(
                     children: [
-                      Text('\$7,000.00', style: TextStyle(
+                      Text(widget.price, style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                         fontFamily: 'Montserrat',
@@ -435,23 +557,50 @@ class _Screen2State extends State<Screen2> {
                   SizedBox(
                     width: 50.w,
                   ),
-                  Container(
-                    width: 219,
-                    height: 48,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFFF73658),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                  GestureDetector(onTap: (){
+    Razorpay razorpay = Razorpay();
+    var options = {
+    'key': 'rzp_test_gKANZdsNdLqaQs',
+    'amount': 100,
+    'name': 'Acme Corp.',
+    'description': 'Fine T-Shirt',
+    'retry': {'enabled': true, 'max_count': 1},
+    'send_sms_hash': true,
+    'prefill': {
+    'contact': '8888888888',
+    'email': 'test@razorpay.com'
+    },
+    'external': {
+    'wallets': ['paytm']
+    }
+    };
+    razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
+    handlePaymentErrorResponse);
+    razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
+    handlePaymentSuccessResponse);
+    razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
+    handleExternalWalletSelected);
+    razorpay.open(options);
+    },
+
+                    child: Container(
+                      width: 219,
+                      height: 48,
+                      decoration: ShapeDecoration(
+                        color: Color(0xFFF73658),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                      ),
+                      child: Center(child: Text('Proceed to Payment', style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.w100,
+                        height: 0.08,
+                        letterSpacing: -0.41,
+                      ),)),
                     ),
-                    child: Center(child: Text('Proceed to Payment', style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontStyle: FontStyle.italic,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.w100,
-                      height: 0.08,
-                      letterSpacing: -0.41,
-                    ),)),
                   ),
                 ],
               )
