@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:online/home.dart';
 import 'package:online/toastmsg.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -17,6 +18,7 @@ class Screen2 extends StatefulWidget {
   final String price;
   final String discount;
   final List<dynamic> image;
+
   const Screen2({super.key,
     required this.name,
     required this.description,
@@ -102,7 +104,7 @@ class _Screen2State extends State<Screen2> {
     ).then(
           (value) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => Screen1()));
+            context, MaterialPageRoute(builder: (_) => Home()));
       },
     );
   }

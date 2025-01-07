@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online/profile.dart';
+import 'package:online/signup.dart';
+import 'package:online/toastmsg.dart';
 class Setting extends StatefulWidget {
   const Setting({super.key});
 
@@ -10,6 +14,7 @@ class Setting extends StatefulWidget {
 }
 
 class _SettingState extends State<Setting> {
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +73,26 @@ class _SettingState extends State<Setting> {
                       },
                           child: Icon(Icons.edit,size: 40,)),
                       Icon(Icons.update,size: 40,),
-                      Icon(Icons.logout,size: 40,),
+                      GestureDetector(
+                          onTap: () {
+                            auth
+                                .signOut()
+                                .then(
+                                  (value) => {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => Signup()),
+                                        (Route<dynamic> route) => false)
+                              },
+                            )
+                                .onError(
+                                  (error, stackTrace) => ToastMessage()
+                                  .toastmessage(
+                                  message: error.toString()),
+                            );
+                          },
+
+                          child: Icon(Icons.logout,size: 40,)),
 
                     ],
                   ),

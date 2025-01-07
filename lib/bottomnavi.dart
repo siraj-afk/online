@@ -54,7 +54,7 @@ class _BottomnaviState extends State<Bottomnavi> {
 
             BottomNavigationBarItem(icon: Column(
               children: [
-                Icon(Icons.search,color: currentIndex==2?Colors.green:Colors.black,),
+                Icon(Icons.shopping_cart,color: currentIndex==2?Colors.green:Colors.black,),
                 Text('Cart', style: TextStyle(
                   color:currentIndex==2?Colors.green:Colors.grey,
                   fontSize: 10,

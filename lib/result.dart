@@ -18,6 +18,7 @@ class Result extends StatefulWidget {
   final String discount;
   final List<dynamic> image;
 
+
   const Result(
       {super.key,
       required this.name,
@@ -25,7 +26,7 @@ class Result extends StatefulWidget {
       required this.offer,
       required this.price,
       required this.discount,
-      required this.image});
+      required this.image, });
 
   @override
   State<Result> createState() => _SearchState();
@@ -599,6 +600,7 @@ class _SearchState extends State<Result> {
                             price: widget.price.toString(),
                             offer: widget.offer.toString(),
                           description: widget.description.toString(),
+
                         )));
                       },
                         child: Container(
